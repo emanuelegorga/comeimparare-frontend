@@ -5,10 +5,7 @@ function Corso({ corso }) {
   return (
     <Card className="my-3 p-3 rounded">
       <a href={`/corso/${corso.id}`}>
-        {/* <Card.Img src={corso.image} /> */}
-        <Card.Text as="div">
-          <div className="my-3">ID corso: {corso.id}</div>
-        </Card.Text>
+        <Card.Img src={corso.image} />
       </a>
 
       <Card.Body>

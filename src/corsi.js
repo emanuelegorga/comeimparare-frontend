@@ -12,6 +12,7 @@ const corsi = [
     profit: "150",
     average_rating: "5",
     user_id: "1",
+    image: "/images/logo192.png",
   },
   {
     id: "2",
@@ -26,6 +27,7 @@ const corsi = [
     profit: "150",
     average_rating: "5",
     user_id: "2",
+    image: "/images/logo192.png",
   },
   {
     id: "3",
@@ -40,6 +42,7 @@ const corsi = [
     profit: "150",
     average_rating: "5",
     user_id: "3",
+    image: "/images/logo192.png",
   },
   {
     id: "4",
@@ -54,6 +57,7 @@ const corsi = [
     profit: "150",
     average_rating: "5",
     user_id: "4",
+    image: "/images/logo192.png",
   },
   {
     id: "5",
@@ -68,6 +72,7 @@ const corsi = [
     profit: "150",
     average_rating: "5",
     user_id: "5",
+    image: "/images/logo192.png",
   },
 ];
 
