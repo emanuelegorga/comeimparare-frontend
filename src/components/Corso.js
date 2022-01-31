@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import Valutazione from "./Valutazione";
 
 function Corso({ corso }) {
   return (
@@ -15,9 +16,11 @@ function Corso({ corso }) {
           </Card.Title>
         </a>
 
-        <Card.Text as="div">
-          <div className="my-3">{corso.average_rating} media di recensioni</div>
-        </Card.Text>
+        <Valutazione
+          value={corso.average_rating}
+          text="Valutazione: "
+          color={"#f8e825"}
+        />
 
         <Card.Text as="div">
           <div className="my-3">Difficoltà: {corso.difficulty}</div>
