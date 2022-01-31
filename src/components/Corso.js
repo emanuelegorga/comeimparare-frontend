@@ -1,20 +1,21 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import Valutazione from "./Valutazione";
+import { Link } from "react-router-dom";
 
 function Corso({ corso }) {
   return (
     <Card className="my-3 p-3 rounded">
-      <a href={`/corso/${corso.id}`}>
+      <Link to={`/corsi/${corso.id}`}>
         <Card.Img src={corso.image} />
-      </a>
+      </Link>
 
       <Card.Body>
-        <a href={`/corso/${corso.id}`}>
+        <Link to={`/corsi/${corso.id}`}>
           <Card.Title as="div">
             <strong>{corso.title}</strong>
           </Card.Title>
-        </a>
+        </Link>
 
         <Valutazione
           value={corso.average_rating}
