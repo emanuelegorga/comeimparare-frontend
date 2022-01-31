@@ -13,6 +13,20 @@ const corsi = [
     average_rating: "1",
     user_id: "1",
     image: "/images/logo192.png",
+    created_at: "01/02/2022",
+    lectures: [
+      {
+        id: "1",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+    ],
+    joins: [
+      {
+        id: "1",
+      },
+    ],
   },
   {
     id: "2",
@@ -28,6 +42,38 @@ const corsi = [
     average_rating: "2",
     user_id: "2",
     image: "/images/logo192.png",
+    created_at: "01/02/2022",
+    lectures: [
+      {
+        id: "2",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+      {
+        id: "6",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+      {
+        id: "7",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+    ],
+    joins: [
+      {
+        id: "2",
+      },
+      {
+        id: "6",
+      },
+      {
+        id: "7",
+      },
+    ],
   },
   {
     id: "3",
@@ -43,6 +89,20 @@ const corsi = [
     average_rating: "3",
     user_id: "3",
     image: "/images/logo192.png",
+    created_at: "01/02/2022",
+    lectures: [
+      {
+        id: "3",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+    ],
+    joins: [
+      {
+        id: "3",
+      },
+    ],
   },
   {
     id: "4",
@@ -58,6 +118,20 @@ const corsi = [
     average_rating: "4",
     user_id: "4",
     image: "/images/logo192.png",
+    created_at: "01/02/2022",
+    lectures: [
+      {
+        id: "4",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+    ],
+    joins: [
+      {
+        id: "4",
+      },
+    ],
   },
   {
     id: "5",
@@ -73,6 +147,20 @@ const corsi = [
     average_rating: "5",
     user_id: "5",
     image: "/images/logo192.png",
+    created_at: "01/02/2022",
+    lectures: [
+      {
+        id: "5",
+        title: "Lezione",
+        content: "Contenuto lezione",
+        created_at: "01/02/2022",
+      },
+    ],
+    joins: [
+      {
+        id: "5",
+      },
+    ],
   },
 ];
 
