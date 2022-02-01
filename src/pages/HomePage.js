@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
+import axios from "axios";
+
 import Corso from "../components/Corso";
-import corsi from "../corsi";
 
 function HomePage() {
+  const [corsi, setCorsi] = useState([]);
+
+  useEffect(() => {
+    async function fetchCorsi() {
+      const { data } = await axios.get("/courses");
+      setCorsi(data);
+    }
+
+    fetchCorsi();
+  }, []);
+
   return (
     <div>
       <h1>Ultimi corsi</h1>

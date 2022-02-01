@@ -12,7 +12,7 @@ const corsi = [
     profit: "150",
     average_rating: "1",
     user_id: "1",
-    image: "/images/logo192.png",
+    logo_url: "/images/logo192.png",
     created_at: "01/02/2022",
     lectures: [
       {
@@ -41,7 +41,7 @@ const corsi = [
     profit: "150",
     average_rating: "2",
     user_id: "2",
-    image: "/images/logo192.png",
+    logo_url: "/images/logo192.png",
     created_at: "01/02/2022",
     lectures: [
       {
@@ -88,7 +88,7 @@ const corsi = [
     profit: "150",
     average_rating: "3",
     user_id: "3",
-    image: "/images/logo192.png",
+    logo_url: "/images/logo192.png",
     created_at: "01/02/2022",
     lectures: [
       {
@@ -117,7 +117,7 @@ const corsi = [
     profit: "150",
     average_rating: "4",
     user_id: "4",
-    image: "/images/logo192.png",
+    logo_url: "/images/logo192.png",
     created_at: "01/02/2022",
     lectures: [
       {
@@ -146,7 +146,7 @@ const corsi = [
     profit: "150",
     average_rating: "5",
     user_id: "5",
-    image: "/images/logo192.png",
+    logo_url: "/images/logo192.png",
     created_at: "01/02/2022",
     lectures: [
       {

@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 import Valutazione from "../components/Valutazione";
-import corsi from "../corsi";
+import axios from "axios";
 
 function CorsoPage() {
   const params = useParams();
-  const corso = corsi.find((corso) => corso.id === params.id);
+  const [corso, setCorso] = useState([]);
+  const [studenti, setStudenti] = useState([]);
+  const [lezioni, setLezioni] = useState([]);
+
+  useEffect(() => {
+    async function fetchCorso() {
+      const { data } = await axios.get(`/courses/${params.id}`);
+      setCorso(data);
+      setStudenti(data.joins);
+      setLezioni(data.lectures);
+    }
+
+    fetchCorso();
+  }, [params.id]);
 
   return (
     <div>
@@ -15,7 +28,7 @@ function CorsoPage() {
       </Link>
       <Row>
         <Col md={6}>
-          <Image src={corso.image} alt={corso.title} fluid />
+          <Image src={corso.logo_url} alt={corso.title} fluid />
         </Col>
         <Col md={3}>
           <ListGroup variant="flush">
@@ -80,7 +93,7 @@ function CorsoPage() {
                 <Row>
                   <Col>Studenti iscritti:</Col>
                   <Col>
-                    <strong>{corso.joins.length}</strong>
+                    <strong>{studenti.length}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -89,7 +102,7 @@ function CorsoPage() {
                 <Row>
                   <Col>Numero lezioni:</Col>
                   <Col>
-                    <strong>{corso.lectures.length}</strong>
+                    <strong>{lezioni.length}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
