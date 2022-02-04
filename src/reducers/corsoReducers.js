@@ -7,7 +7,7 @@ import {
   CORSO_PROPERTIES_FAIL,
 } from "../constants/corsoConstants";
 
-export const corsoListReducers = (state = { corsi: [] }, action) => {
+export const corsoListReducer = (state = { corsi: [] }, action) => {
   switch (action.type) {
     case CORSO_LIST_REQUEST:
       return { loading: true, corsi: [] };
@@ -23,7 +23,7 @@ export const corsoListReducers = (state = { corsi: [] }, action) => {
   }
 };
 
-export const corsoPropertiesReducers = (
+export const corsoPropertiesReducer = (
   state = { corso: {}, studenti: [], lezioni: [] },
   action
 ) => {

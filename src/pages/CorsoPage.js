@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 
 import Valutazione from "../components/Valutazione";
@@ -11,6 +11,7 @@ import { listCorsoProperties } from "../actions/corsoActions";
 
 function CorsoPage() {
   const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const corsoProperties = useSelector((state) => state.corsoProperties);
@@ -19,6 +20,10 @@ function CorsoPage() {
   useEffect(() => {
     dispatch(listCorsoProperties(params.id));
   }, [dispatch, params.id]);
+
+  const aggiungiAlCarrello = () => {
+    navigate(`/carrello/${params.id}`);
+  };
 
   return (
     <div>
@@ -113,6 +118,7 @@ function CorsoPage() {
 
                 <ListGroup.Item>
                   <Button
+                    onClick={aggiungiAlCarrello}
                     disabled={false} // check if User has appropriate role to buy
                     className="btn-block w-100"
                     type="button"
