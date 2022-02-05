@@ -7,9 +7,9 @@ import {
   DETTAGLI_ORDINE_REQUEST,
   DETTAGLI_ORDINE_SUCCESS,
   DETTAGLI_ORDINE_FAIL,
-  LISTA_ORDINI_REQUEST,
-  LISTA_ORDINI_SUCCESS,
-  LISTA_ORDINI_FAIL,
+  LISTA_MIEI_ORDINI_REQUEST,
+  LISTA_MIEI_ORDINI_SUCCESS,
+  LISTA_MIEI_ORDINI_FAIL,
 } from "../constants/ordineConstants";
 import { PULISCI_CARRELLO } from "../constants/carrelloConstants";
 
@@ -86,10 +86,10 @@ export const getDettagliOrdine = (id) => async (dispatch, getState) => {
   }
 };
 
-export const listaOrdini = () => async (dispatch, getState) => {
+export const listaOrdiniMiei = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: LISTA_ORDINI_REQUEST,
+      type: LISTA_MIEI_ORDINI_REQUEST,
     });
 
     const {
@@ -106,12 +106,12 @@ export const listaOrdini = () => async (dispatch, getState) => {
     const { data } = await axios.get("/orders", config);
 
     dispatch({
-      type: LISTA_ORDINI_SUCCESS,
+      type: LISTA_MIEI_ORDINI_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: LISTA_ORDINI_FAIL,
+      type: LISTA_MIEI_ORDINI_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

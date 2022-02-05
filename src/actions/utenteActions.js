@@ -26,7 +26,7 @@ import {
   UTENTE_UPDATE_FAIL,
 } from "../constants/utenteConstants";
 
-import { LISTA_ORDINI_RESET } from "../constants/ordineConstants";
+import { LISTA_MIEI_ORDINI_RESET } from "../constants/ordineConstants";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -62,7 +62,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("utenteInfo");
   dispatch({ type: UTENTE_LOGOUT });
   dispatch({ type: UTENTE_ACCOUNT_RESET });
-  dispatch({ type: LISTA_ORDINI_RESET });
+  dispatch({ type: LISTA_MIEI_ORDINI_RESET });
 };
 
 export const registrazione =

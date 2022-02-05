@@ -11,7 +11,7 @@ import {
   getUtenteAccount,
   updateUtenteAccount,
 } from "../actions/utenteActions";
-import { listaOrdini } from "../actions/ordineActions";
+import { listaOrdiniMiei } from "../actions/ordineActions";
 import { UTENTE_UPDATE_ACCOUNT_RESET } from "../constants/utenteConstants";
 
 function AccountPage() {
@@ -47,7 +47,7 @@ function AccountPage() {
     } else {
       if (!utente || !utente.name || utenteInfo.id !== utente.id) {
         dispatch(getUtenteAccount(params.id));
-        dispatch(listaOrdini());
+        dispatch(listaOrdiniMiei());
       } else {
         setName(utente.name);
         setEmail(utente.email);
