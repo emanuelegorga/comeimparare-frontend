@@ -17,6 +17,7 @@ import ListaUtentiPage from "./pages/ListaUtentiPage";
 import ModificaUtentePage from "./pages/ModificaUtentePage";
 import ListaCorsiPage from "./pages/ListaCorsiPage";
 import ModificaCorsoPage from "./pages/ModificaCorsoPage";
+import ListaOrdiniPage from "./pages/ListaOrdiniPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/corsi/:id" element={<CorsoPage />} />
             <Route path="/admin/listautenti" element={<ListaUtentiPage />} />
             <Route path="/admin/listacorsi" element={<ListaCorsiPage />} />
+            <Route path="/admin/listaordini" element={<ListaOrdiniPage />} />
             <Route
               path="/admin/corsi/:id/modifica"
               element={<ModificaCorsoPage />}

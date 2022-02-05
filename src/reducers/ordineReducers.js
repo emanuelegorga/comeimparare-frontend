@@ -10,6 +10,9 @@ import {
   LISTA_MIEI_ORDINI_SUCCESS,
   LISTA_MIEI_ORDINI_FAIL,
   LISTA_MIEI_ORDINI_RESET,
+  LISTA_ORDINI_REQUEST,
+  LISTA_ORDINI_SUCCESS,
+  LISTA_ORDINI_FAIL,
 } from "../constants/ordineConstants";
 
 export const ordineCreaReducer = (state = {}, action) => {
@@ -89,6 +92,30 @@ export const listaMieiOrdiniReducer = (state = { ordini: [] }, action) => {
 
     case LISTA_MIEI_ORDINI_RESET:
       return { ordini: [] };
+
+    default:
+      return state;
+  }
+};
+
+export const listaOrdiniReducer = (state = { ordini: [] }, action) => {
+  switch (action.type) {
+    case LISTA_ORDINI_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case LISTA_ORDINI_SUCCESS:
+      return {
+        loading: false,
+        ordini: action.payload,
+      };
+
+    case LISTA_ORDINI_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

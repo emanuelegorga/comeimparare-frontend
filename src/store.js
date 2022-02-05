@@ -22,6 +22,7 @@ import {
   ordineCreaReducer,
   ordineDettagliReducer,
   listaMieiOrdiniReducer,
+  listaOrdiniReducer,
 } from "./reducers/ordineReducers";
 
 const reducer = combineReducers({
@@ -44,6 +45,7 @@ const reducer = combineReducers({
   ordineCrea: ordineCreaReducer,
   ordineDettagli: ordineDettagliReducer,
   listaMieiOrdini: listaMieiOrdiniReducer,
+  listaOrdini: listaOrdiniReducer,
 });
 
 const carrelloItemsFromSstorage = localStorage.getItem("carrelloItems")
