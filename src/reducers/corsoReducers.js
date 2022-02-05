@@ -16,6 +16,10 @@ import {
   CORSO_UPDATE_SUCCESS,
   CORSO_UPDATE_FAIL,
   CORSO_UPDATE_RESET,
+  CORSO_UPDATE_RATE_REQUEST,
+  CORSO_UPDATE_RATE_SUCCESS,
+  CORSO_UPDATE_RATE_FAIL,
+  CORSO_UPDATE_RATE_RESET,
 } from "../constants/corsoConstants";
 
 export const corsoListReducer = (state = { corsi: [] }, action) => {
@@ -105,6 +109,25 @@ export const corsoUpdateReducer = (state = { corso: {} }, action) => {
       return { loading: false, error: action.payload };
 
     case CORSO_UPDATE_RESET:
+      return { corso: {} };
+
+    default:
+      return state;
+  }
+};
+
+export const corsoUpdateRateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CORSO_UPDATE_RATE_REQUEST:
+      return { loading: true };
+
+    case CORSO_UPDATE_RATE_SUCCESS:
+      return { loading: false, success: true };
+
+    case CORSO_UPDATE_RATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case CORSO_UPDATE_RATE_RESET:
       return { corso: {} };
 
     default:

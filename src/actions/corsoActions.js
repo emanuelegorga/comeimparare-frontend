@@ -15,6 +15,9 @@ import {
   CORSO_UPDATE_REQUEST,
   CORSO_UPDATE_SUCCESS,
   CORSO_UPDATE_FAIL,
+  CORSO_UPDATE_RATE_REQUEST,
+  CORSO_UPDATE_RATE_SUCCESS,
+  CORSO_UPDATE_RATE_FAIL,
 } from "../constants/corsoConstants";
 
 export const listCorsi = () => async (dispatch) => {
@@ -164,6 +167,44 @@ export const updateCorso = (corso) => async (dispatch, getState) => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updateCorsoRate = (id, rate) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: CORSO_UPDATE_RATE_REQUEST,
+    });
+
+    const {
+      utenteLogin: { utenteInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${utenteInfo.auth_token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `/courses/${id}/rate_course`,
+      rate,
+      config
+    );
+
+    dispatch({
+      type: CORSO_UPDATE_RATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CORSO_UPDATE_RATE_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
           : error.message,
     });
   }

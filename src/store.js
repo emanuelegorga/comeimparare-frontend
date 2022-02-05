@@ -7,6 +7,7 @@ import {
   corsoEliminaReducer,
   corsoCreaReducer,
   corsoUpdateReducer,
+  corsoUpdateRateReducer,
 } from "./reducers/corsoReducers";
 import { carrelloReducer } from "./reducers/carrelloReducers";
 import {
@@ -31,6 +32,7 @@ const reducer = combineReducers({
   corsoElimina: corsoEliminaReducer,
   corsoCrea: corsoCreaReducer,
   corsoUpdate: corsoUpdateReducer,
+  corsoUpdateRate: corsoUpdateRateReducer,
 
   carrello: carrelloReducer,
 
