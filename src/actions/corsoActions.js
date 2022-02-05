@@ -3,6 +3,9 @@ import {
   CORSO_LIST_REQUEST,
   CORSO_LIST_SUCCESS,
   CORSO_LIST_FAIL,
+  CORSO_LATEST_REQUEST,
+  CORSO_LATEST_SUCCESS,
+  CORSO_LATEST_FAIL,
   CORSO_PROPERTIES_REQUEST,
   CORSO_PROPERTIES_SUCCESS,
   CORSO_PROPERTIES_FAIL,
@@ -24,12 +27,12 @@ import {
 } from "../constants/corsoConstants";
 
 export const listCorsi =
-  (q = "") =>
+  (params = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: CORSO_LIST_REQUEST });
 
-      const { data } = await axios.get(`/courses${q}`);
+      const { data } = await axios.get(`/courses${params}`);
 
       dispatch({
         type: CORSO_LIST_SUCCESS,
@@ -45,6 +48,27 @@ export const listCorsi =
       });
     }
   };
+
+export const listLatestCorsi = () => async (dispatch) => {
+  try {
+    dispatch({ type: CORSO_LATEST_REQUEST });
+
+    const { data } = await axios.get("/courses/latest");
+
+    dispatch({
+      type: CORSO_LATEST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CORSO_LATEST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const listCorsoProperties = (id) => async (dispatch) => {
   try {

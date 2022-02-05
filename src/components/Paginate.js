@@ -7,8 +7,6 @@ function Paginate({ pages, page, search_title = "", is_admin = false }) {
     search_title = search_title.split("?search_title=")[1].split("&")[0];
   }
 
-  console.log(pages);
-
   return (
     pages > 1 && (
       <Pagination className="justify-content-center">
@@ -17,7 +15,7 @@ function Paginate({ pages, page, search_title = "", is_admin = false }) {
             key={x + 1}
             to={
               !is_admin
-                ? `/?search_title=${search_title}&page=${x + 1}`
+                ? `?search_title=${search_title}&page=${x + 1}`
                 : `/admin/listacorsi/?search_title=${search_title}&page=${
                     x + 1
                   }`

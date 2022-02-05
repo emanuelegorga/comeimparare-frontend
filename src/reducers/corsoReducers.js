@@ -2,6 +2,9 @@ import {
   CORSO_LIST_REQUEST,
   CORSO_LIST_SUCCESS,
   CORSO_LIST_FAIL,
+  CORSO_LATEST_REQUEST,
+  CORSO_LATEST_SUCCESS,
+  CORSO_LATEST_FAIL,
   CORSO_PROPERTIES_REQUEST,
   CORSO_PROPERTIES_SUCCESS,
   CORSO_PROPERTIES_FAIL,
@@ -39,6 +42,25 @@ export const corsoListReducer = (state = { corsi: [] }, action) => {
       };
 
     case CORSO_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const corsoLatestReducer = (state = { corsi: [] }, action) => {
+  switch (action.type) {
+    case CORSO_LATEST_REQUEST:
+      return { loading: true, corsi: [] };
+
+    case CORSO_LATEST_SUCCESS:
+      return {
+        loading: false,
+        corsi: action.payload,
+      };
+
+    case CORSO_LATEST_FAIL:
       return { loading: false, error: action.payload };
 
     default:

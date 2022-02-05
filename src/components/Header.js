@@ -48,7 +48,7 @@ function Header() {
                 </LinkContainer>
               )}
 
-              <LinkContainer to="/corsi">
+              <LinkContainer to="/listacorsi">
                 <Nav.Link>
                   <i className="fas fa-books"></i>Corsi
                 </Nav.Link>

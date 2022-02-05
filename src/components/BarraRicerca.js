@@ -12,7 +12,7 @@ function BarraRicerca() {
     e.preventDefault();
 
     if (search_title) {
-      navigate(`/?search_title=${search_title}&page=1`);
+      navigate(`listacorsi/?search_title=${search_title}&page=1`);
     } else {
       navigate(navigate(location.pathname));
     }
