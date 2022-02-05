@@ -14,6 +14,13 @@ import {
   UTENTE_UPDATE_ACCOUNT_REQUEST,
   UTENTE_UPDATE_ACCOUNT_SUCCESS,
   UTENTE_UPDATE_ACCOUNT_FAIL,
+  LISTA_UTENTI_REQUEST,
+  LISTA_UTENTI_SUCCESS,
+  LISTA_UTENTI_FAIL,
+  LISTA_UTENTI_RESET,
+  ELIMINA_UTENTE_REQUEST,
+  ELIMINA_UTENTE_SUCCESS,
+  ELIMINA_UTENTE_FAIL,
 } from "../constants/utenteConstants";
 
 import { LISTA_ORDINI_RESET } from "../constants/ordineConstants";
@@ -23,12 +30,6 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: UTENTE_LOGIN_REQUEST,
     });
-
-    // const config = {
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    // };
 
     const { data } = await axios.post("/auth/login", {
       user: {
@@ -67,12 +68,6 @@ export const registrazione =
       dispatch({
         type: UTENTE_REGISTRAZIONE_REQUEST,
       });
-
-      // const config = {
-      //   headers: {
-      //     "Content-type": "application/json",
-      //   },
-      // };
 
       const { data } = await axios.post("/users", {
         user: {
@@ -189,3 +184,71 @@ export const updateUtenteAccount =
       });
     }
   };
+
+export const getListaUtenti = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LISTA_UTENTI_REQUEST,
+    });
+
+    const {
+      utenteLogin: { utenteInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${utenteInfo.auth_token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/users`, config);
+
+    dispatch({
+      type: LISTA_UTENTI_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: LISTA_UTENTI_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const eliminaUtente = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ELIMINA_UTENTE_REQUEST,
+    });
+
+    const {
+      utenteLogin: { utenteInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${utenteInfo.auth_token}`,
+      },
+    };
+
+    const { data } = await axios.delete(`/users/${id}`, config);
+
+    dispatch({
+      type: ELIMINA_UTENTE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ELIMINA_UTENTE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

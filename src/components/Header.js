@@ -56,6 +56,22 @@ function Header() {
                   <i className="fas fa-shopping-cart"></i>Carrello
                 </Nav.Link>
               </LinkContainer>
+
+              {utenteInfo && utenteInfo.is_admin && (
+                <NavDropdown title="Admin" id="adminmenu">
+                  <LinkContainer to="/admin/listautenti">
+                    <NavDropdown.Item>Utenti</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <LinkContainer to="/admin/listacorsi">
+                    <NavDropdown.Item>Corsi</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <LinkContainer to="/admin/listaordini">
+                    <NavDropdown.Item>Ordini</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

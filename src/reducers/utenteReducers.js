@@ -14,6 +14,13 @@ import {
   UTENTE_UPDATE_ACCOUNT_SUCCESS,
   UTENTE_UPDATE_ACCOUNT_FAIL,
   UTENTE_UPDATE_ACCOUNT_RESET,
+  LISTA_UTENTI_REQUEST,
+  LISTA_UTENTI_SUCCESS,
+  LISTA_UTENTI_FAIL,
+  LISTA_UTENTI_RESET,
+  ELIMINA_UTENTE_REQUEST,
+  ELIMINA_UTENTE_SUCCESS,
+  ELIMINA_UTENTE_FAIL,
 } from "../constants/utenteConstants";
 
 export const utenteLoginReducer = (state = {}, action) => {
@@ -86,6 +93,41 @@ export const utenteUpdateAccountReducer = (state = {}, action) => {
 
     case UTENTE_UPDATE_ACCOUNT_RESET:
       return {};
+
+    default:
+      return state;
+  }
+};
+
+export const listaUtentiReducer = (state = { utenti: [] }, action) => {
+  switch (action.type) {
+    case LISTA_UTENTI_REQUEST:
+      return { loading: true };
+
+    case LISTA_UTENTI_SUCCESS:
+      return { loading: false, utenti: action.payload };
+
+    case LISTA_UTENTI_FAIL:
+      return { loading: false, error: action.payload };
+
+    case LISTA_UTENTI_RESET:
+      return { utenti: [] };
+
+    default:
+      return state;
+  }
+};
+
+export const utenteEliminaReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ELIMINA_UTENTE_REQUEST:
+      return { loading: true };
+
+    case ELIMINA_UTENTE_SUCCESS:
+      return { loading: false, success: true };
+
+    case ELIMINA_UTENTE_FAIL:
+      return { loading: false, error: action.payload };
 
     default:
       return state;
