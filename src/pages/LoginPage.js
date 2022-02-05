@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 
-import { login } from "../actions/utenteAction";
+import { login } from "../actions/utenteActions";
 
 function LoginPage() {
   const navigate = useNavigate();

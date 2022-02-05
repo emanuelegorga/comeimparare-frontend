@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 
-import { registrazione } from "../actions/utenteAction";
+import { registrazione } from "../actions/utenteActions";
 
 function RegistrazionePage() {
   const navigate = useNavigate();

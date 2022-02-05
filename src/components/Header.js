@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { logout } from "../actions/utenteAction";
+import { logout } from "../actions/utenteActions";
 
 function Header() {
   const dispatch = useDispatch();

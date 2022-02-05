@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Table } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
-import { getUtenteAccount, updateUtenteAccount } from "../actions/utenteAction";
+import {
+  getUtenteAccount,
+  updateUtenteAccount,
+} from "../actions/utenteActions";
+import { listaOrdini } from "../actions/ordineActions";
 import { UTENTE_UPDATE_ACCOUNT_RESET } from "../constants/utenteConstants";
 
 function AccountPage() {
@@ -29,12 +34,20 @@ function AccountPage() {
   const utenteUpdateAccount = useSelector((state) => state.utenteUpdateAccount);
   const { success } = utenteUpdateAccount;
 
+  const listaMieiOrdini = useSelector((state) => state.listaMieiOrdini);
+  const {
+    loading: loadingOrders,
+    error: errorOrders,
+    ordini,
+  } = listaMieiOrdini;
+
   useEffect(() => {
     if (!utenteInfo) {
       navigate("/login");
     } else {
       if (!utente || !utente.name) {
         dispatch(getUtenteAccount(params.id));
+        dispatch(listaOrdini());
       } else {
         setName(utente.name);
         setEmail(utente.email);
@@ -122,7 +135,46 @@ function AccountPage() {
         </Form>
       </Col>
       <Col md={9}>
-        <h2>I miei corsi</h2>
+        <h2>I miei acquisti</h2>
+        {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message variant="danger">{errorOrders}</Message>
+        ) : (
+          <Table striped responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Totale</th>
+                <th>Stato pagamento</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {ordini.map((ordine) => (
+                <tr key={ordine.id}>
+                  <td>{ordine.id}</td>
+                  <td>{ordine.created_at.substring(0, 10)}</td>
+                  <td>${ordine.total}</td>
+                  <td>
+                    {ordine.paid_at ? (
+                      ordine.paid_at.substring(0, 10)
+                    ) : (
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                    )}
+                  </td>
+                  <td>
+                    <LinkContainer to={`/ordini/${ordine.id}`}>
+                      <Button className="btn-sm">Dettagli</Button>
+                    </LinkContainer>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
       </Col>
     </Row>
   );
