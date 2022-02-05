@@ -71,7 +71,7 @@ function ListaUtentiPage() {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/accounts/${utente.id}`}>
+                  <LinkContainer to={`/admin/utenti/${utente.id}/modifica`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>

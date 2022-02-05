@@ -21,6 +21,10 @@ import {
   ELIMINA_UTENTE_REQUEST,
   ELIMINA_UTENTE_SUCCESS,
   ELIMINA_UTENTE_FAIL,
+  UTENTE_UPDATE_REQUEST,
+  UTENTE_UPDATE_SUCCESS,
+  UTENTE_UPDATE_FAIL,
+  UTENTE_UPDATE_RESET,
 } from "../constants/utenteConstants";
 
 export const utenteLoginReducer = (state = {}, action) => {
@@ -128,6 +132,25 @@ export const utenteEliminaReducer = (state = {}, action) => {
 
     case ELIMINA_UTENTE_FAIL:
       return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const utenteUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UTENTE_UPDATE_REQUEST:
+      return { loading: true };
+
+    case UTENTE_UPDATE_SUCCESS:
+      return { loading: false, success: true };
+
+    case UTENTE_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case UTENTE_UPDATE_RESET:
+      return { user: {} };
 
     default:
       return state;

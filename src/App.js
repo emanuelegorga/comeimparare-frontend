@@ -14,6 +14,7 @@ import PagamentoPage from "./pages/PagamentoPage";
 import ConfermaOrdinePage from "./pages/ConfermaOrdinePage";
 import OrdinePage from "./pages/OrdinePage";
 import ListaUtentiPage from "./pages/ListaUtentiPage";
+import ModificaUtentePage from "./pages/ModificaUtentePage";
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
             <Route path="/ordini/:id" element={<OrdinePage />} />
             <Route path="/corsi/:id" element={<CorsoPage />} />
             <Route path="/admin/listautenti" element={<ListaUtentiPage />} />
+            <Route
+              path="/admin/utenti/:id/modifica"
+              element={<ModificaUtentePage />}
+            />
             <Route path="/carrello" element={<CarrelloPage />}>
               <Route path=":id" element={<CarrelloPage />} />
             </Route>

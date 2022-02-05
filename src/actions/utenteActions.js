@@ -21,6 +21,9 @@ import {
   ELIMINA_UTENTE_REQUEST,
   ELIMINA_UTENTE_SUCCESS,
   ELIMINA_UTENTE_FAIL,
+  UTENTE_UPDATE_REQUEST,
+  UTENTE_UPDATE_SUCCESS,
+  UTENTE_UPDATE_FAIL,
 } from "../constants/utenteConstants";
 
 import { LISTA_ORDINI_RESET } from "../constants/ordineConstants";
@@ -245,6 +248,44 @@ export const eliminaUtente = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ELIMINA_UTENTE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updateUtente = (utente) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: UTENTE_UPDATE_REQUEST,
+    });
+
+    const {
+      utenteLogin: { utenteInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${utenteInfo.auth_token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/users/${utente.id}`, utente, config);
+
+    dispatch({
+      type: UTENTE_UPDATE_SUCCESS,
+    });
+
+    dispatch({
+      type: UTENTE_ACCOUNT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UTENTE_UPDATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

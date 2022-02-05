@@ -45,7 +45,7 @@ function AccountPage() {
     if (!utenteInfo) {
       navigate("/login");
     } else {
-      if (!utente || !utente.name) {
+      if (!utente || !utente.name || utenteInfo.id !== utente.id) {
         dispatch(getUtenteAccount(params.id));
         dispatch(listaOrdini());
       } else {
@@ -88,7 +88,7 @@ function AccountPage() {
 
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Nome</Form.Label>
             <Form.Control
               required
               type="name"

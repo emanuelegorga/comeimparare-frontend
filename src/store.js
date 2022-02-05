@@ -13,6 +13,7 @@ import {
   utenteUpdateAccountReducer,
   listaUtentiReducer,
   utenteEliminaReducer,
+  utenteUpdateReducer,
 } from "./reducers/utenteReducers";
 import {
   ordineCreaReducer,
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   utenteUpdateAccount: utenteUpdateAccountReducer,
   listaUtenti: listaUtentiReducer,
   utenteElimina: utenteEliminaReducer,
+  utenteUpdate: utenteUpdateReducer,
 
   ordineCrea: ordineCreaReducer,
   ordineDettagli: ordineDettagliReducer,
