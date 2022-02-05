@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -23,16 +24,20 @@ function ModificaCorsoPage() {
   const [summary, setSummary] = useState("");
   const [language, setLanguage] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [accepted, setAccepted] = useState("");
-  const [published, setPublished] = useState("");
+  const [accepted, setAccepted] = useState(false);
+  const [published, setPublished] = useState(false);
   const [price, setPrice] = useState(0);
   const [logo, setLogo] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const difficulties = ["easy", "medium", "hard"];
   const languages = ["italian", "english", "spanish", "french"];
 
   const corsoProperties = useSelector((state) => state.corsoProperties);
   const { error, loading, corso } = corsoProperties;
+
+  const utenteLogin = useSelector((state) => state.utenteLogin);
+  const { utenteInfo } = utenteLogin;
 
   const corsoUpdate = useSelector((state) => state.corsoUpdate);
   const {
@@ -57,7 +62,7 @@ function ModificaCorsoPage() {
         setAccepted(corso.accepted);
         setPublished(corso.published);
         setPrice(corso.price);
-        setLogo(corso.logo);
+        setLogo(corso.logo ? corso.logo : "");
       }
     }
   }, [dispatch, corso, corsoId, navigate, successUpdate]);
@@ -77,6 +82,34 @@ function ModificaCorsoPage() {
         price,
       })
     );
+  };
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+
+    formData.append("logo", file);
+    formData.append("corso_id", corsoId);
+
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${utenteInfo.auth_token}`,
+        },
+      };
+      const { data } = await axios.put(
+        `/courses/${corsoId}/upload`,
+        formData,
+        config
+      );
+      setLogo(data);
+      setUploading(false);
+    } catch (error) {
+      setUploading(false);
+    }
   };
 
   return (
@@ -165,7 +198,7 @@ function ModificaCorsoPage() {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="image">
+            <Form.Group>
               <Form.Label>Logo</Form.Label>
               <Form.Control
                 type="text"
@@ -173,6 +206,15 @@ function ModificaCorsoPage() {
                 value={logo}
                 onChange={(e) => setLogo(e.target.value)}
               ></Form.Control>
+
+              <Form.Control
+                id="image-file"
+                label="Choose File"
+                type="file"
+                // custom
+                onChange={uploadFileHandler}
+              ></Form.Control>
+              {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId="accepted">
