@@ -4,6 +4,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   corsoListReducer,
   corsoPropertiesReducer,
+  corsoEliminaReducer,
+  corsoCreaReducer,
+  corsoUpdateReducer,
 } from "./reducers/corsoReducers";
 import { carrelloReducer } from "./reducers/carrelloReducers";
 import {
@@ -24,6 +27,9 @@ import {
 const reducer = combineReducers({
   corsoList: corsoListReducer,
   corsoProperties: corsoPropertiesReducer,
+  corsoElimina: corsoEliminaReducer,
+  corsoCrea: corsoCreaReducer,
+  corsoUpdate: corsoUpdateReducer,
 
   carrello: carrelloReducer,
 

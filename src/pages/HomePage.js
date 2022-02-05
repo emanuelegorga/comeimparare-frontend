@@ -26,11 +26,13 @@ function HomePage() {
         <Message variant="danger">{error}</Message>
       ) : (
         <Row>
-          {corsi.map((corso) => (
-            <Col key={corso.id} sm={12} md={6} lg={4} xl={3}>
-              <Corso corso={corso} />
-            </Col>
-          ))}
+          {corsi
+            .filter((item) => item.published && item.accepted)
+            .map((corso) => (
+              <Col key={corso.id} sm={12} md={6} lg={4} xl={3}>
+                <Corso corso={corso} />
+              </Col>
+            ))}
         </Row>
       )}
     </div>
