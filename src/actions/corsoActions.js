@@ -18,28 +18,33 @@ import {
   CORSO_UPDATE_RATE_REQUEST,
   CORSO_UPDATE_RATE_SUCCESS,
   CORSO_UPDATE_RATE_FAIL,
+  CORSI_MIGLIORI_REQUEST,
+  CORSI_MIGLIORI_SUCCESS,
+  CORSI_MIGLIORI_FAIL,
 } from "../constants/corsoConstants";
 
-export const listCorsi = () => async (dispatch) => {
-  try {
-    dispatch({ type: CORSO_LIST_REQUEST });
+export const listCorsi =
+  (q = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: CORSO_LIST_REQUEST });
 
-    const { data } = await axios.get("/courses");
+      const { data } = await axios.get(`/courses${q}`);
 
-    dispatch({
-      type: CORSO_LIST_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: CORSO_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: CORSO_LIST_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: CORSO_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const listCorsoProperties = (id) => async (dispatch) => {
   try {
@@ -203,8 +208,29 @@ export const updateCorsoRate = (id, rate) => async (dispatch, getState) => {
     dispatch({
       type: CORSO_UPDATE_RATE_FAIL,
       payload:
-        error.response && error.response.data.detail
-          ? error.response.data.detail
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listCorsiMigliori = () => async (dispatch) => {
+  try {
+    dispatch({ type: CORSI_MIGLIORI_REQUEST });
+
+    const { data } = await axios.get(`/courses/top`);
+
+    dispatch({
+      type: CORSI_MIGLIORI_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CORSI_MIGLIORI_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }

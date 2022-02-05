@@ -13,6 +13,7 @@ function ListaCorsiPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  let search_title = location.search;
 
   const corsoList = useSelector((state) => state.corsoList);
   const { error, loading, corsi } = corsoList;
@@ -53,7 +54,7 @@ function ListaCorsiPage() {
     if (successCreate) {
       navigate(`/admin/corsi/${createdCorso.id}/modifica`);
     } else {
-      dispatch(listCorsi());
+      dispatch(listCorsi(search_title));
     }
   }, [
     dispatch,
@@ -62,6 +63,7 @@ function ListaCorsiPage() {
     successDelete,
     successCreate,
     createdCorso,
+    search_title,
   ]);
 
   const deleteHandler = (id) => {

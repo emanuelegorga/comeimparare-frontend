@@ -20,6 +20,9 @@ import {
   CORSO_UPDATE_RATE_SUCCESS,
   CORSO_UPDATE_RATE_FAIL,
   CORSO_UPDATE_RATE_RESET,
+  CORSI_MIGLIORI_REQUEST,
+  CORSI_MIGLIORI_SUCCESS,
+  CORSI_MIGLIORI_FAIL,
 } from "../constants/corsoConstants";
 
 export const corsoListReducer = (state = { corsi: [] }, action) => {
@@ -28,7 +31,12 @@ export const corsoListReducer = (state = { corsi: [] }, action) => {
       return { loading: true, corsi: [] };
 
     case CORSO_LIST_SUCCESS:
-      return { loading: false, corsi: action.payload };
+      return {
+        loading: false,
+        corsi: action.payload.corsi,
+        page: action.payload.page,
+        pages: action.payload.pages,
+      };
 
     case CORSO_LIST_FAIL:
       return { loading: false, error: action.payload };
@@ -129,6 +137,22 @@ export const corsoUpdateRateReducer = (state = {}, action) => {
 
     case CORSO_UPDATE_RATE_RESET:
       return { corso: {} };
+
+    default:
+      return state;
+  }
+};
+
+export const corsiMiglioriReducer = (state = { corsi: [] }, action) => {
+  switch (action.type) {
+    case CORSI_MIGLIORI_REQUEST:
+      return { loading: true, corsi: [] };
+
+    case CORSI_MIGLIORI_SUCCESS:
+      return { loading: false, corsi: action.payload };
+
+    case CORSI_MIGLIORI_FAIL:
+      return { loading: false, error: action.payload };
 
     default:
       return state;
