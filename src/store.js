@@ -12,15 +12,24 @@ import {
   utenteAccountReducer,
   utenteUpdateAccountReducer,
 } from "./reducers/utenteReducers";
+import {
+  ordineCreaReducer,
+  ordineDettagliReducer,
+} from "./reducers/ordineReducers";
 
 const reducer = combineReducers({
   corsoList: corsoListReducer,
   corsoProperties: corsoPropertiesReducer,
+
   carrello: carrelloReducer,
+
   utenteLogin: utenteLoginReducer,
   utenteRegistrazione: utenteRegistrazioneReducer,
   utenteAccount: utenteAccountReducer,
   utenteUpdateAccount: utenteUpdateAccountReducer,
+
+  ordineCrea: ordineCreaReducer,
+  ordineDettagli: ordineDettagliReducer,
 });
 
 const carrelloItemsFromSstorage = localStorage.getItem("carrelloItems")

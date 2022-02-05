@@ -28,7 +28,7 @@ function CarrelloPage() {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    navigate("/metodopagamento");
   };
 
   return (

@@ -10,6 +10,9 @@ import CarrelloPage from "./pages/CarrelloPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrazionePage from "./pages/RegistrazionePage";
 import AccountPage from "./pages/AccountPage";
+import PagamentoPage from "./pages/PagamentoPage";
+import ConfermaOrdinePage from "./pages/ConfermaOrdinePage";
+import OrdinePage from "./pages/OrdinePage";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registrazione" element={<RegistrazionePage />} />
             <Route path="/accounts/:id" element={<AccountPage />} />
+            <Route path="/metodopagamento" element={<PagamentoPage />} />
+            <Route path="/confermaordine" element={<ConfermaOrdinePage />} />
+            <Route path="/ordini/:id" element={<OrdinePage />} />
             <Route path="/corsi/:id" element={<CorsoPage />} />
             <Route path="/carrello" element={<CarrelloPage />}>
               <Route path=":id" element={<CarrelloPage />} />

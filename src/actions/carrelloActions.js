@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   CARRELLO_ADD_ITEM,
   CARRELLO_REMOVE_ITEM,
+  CARRELLO_METODO_PAGAMENTO,
 } from "../constants/carrelloConstants";
 
 export const aggiungiAlCarrello = (id) => async (dispatch, getState) => {
@@ -12,7 +13,7 @@ export const aggiungiAlCarrello = (id) => async (dispatch, getState) => {
     payload: {
       id: data.id,
       title: data.title,
-      logo: data.logo,
+      logo: data.logo_url,
       difficulty: data.difficulty,
       language: data.language,
       description: data.description,
@@ -37,4 +38,13 @@ export const rimuoviDaCarrello = (id) => (dispatch, getState) => {
     "carrelloItems",
     JSON.stringify(getState().carrello.carrelloItems)
   );
+};
+
+export const metodoPagamento = (data) => (dispatch) => {
+  dispatch({
+    type: CARRELLO_METODO_PAGAMENTO,
+    payload: data,
+  });
+
+  localStorage.setItem("metodoPagamento", JSON.stringify(data));
 };
