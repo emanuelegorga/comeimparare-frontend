@@ -31,7 +31,8 @@ function Corso({ corso }) {
         </Card.Text>
         <Card.Text as="div">
           <div className="my-3">
-            <i className="fas fa-book"></i> {corso.lectures.length} Lezione
+            <i className="fas fa-book"></i>{" "}
+            {undefined !== corso.lectures && corso.lectures.length} Lezione
           </div>
         </Card.Text>
         <Card.Text as="div">
