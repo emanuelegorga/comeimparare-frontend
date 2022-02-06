@@ -30,6 +30,11 @@ function Corso({ corso }) {
           </div>
         </Card.Text>
         <Card.Text as="div">
+          <div className="my-3">
+            <i className="fas fa-book"></i> {corso.lectures.length} Lezione
+          </div>
+        </Card.Text>
+        <Card.Text as="div">
           <div className="my-3">{corso.description}</div>
         </Card.Text>
 

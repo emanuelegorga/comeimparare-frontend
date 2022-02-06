@@ -135,7 +135,10 @@ function CorsoPage() {
                     <Row>
                       <Col>Creato il:</Col>
                       <Col>
-                        <strong>{corso.difficulty}</strong>
+                        <strong>
+                          {undefined !== corso.created_at &&
+                            corso.created_at.substring(0, 10)}
+                        </strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -170,6 +173,22 @@ function CorsoPage() {
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={6}>
+              <h4>Lezioni</h4>
+              <ListGroup variant="flush">
+                {undefined !== corso.lectures &&
+                  corso.lectures.map((lecture) => (
+                    <ListGroup.Item key={lecture.id}>
+                      <strong>{lecture.title}</strong>
+                      <p>{lecture.created_at.substring(0, 10)}</p>
+                      <p>{lecture.content}</p>
+                    </ListGroup.Item>
+                  ))}
+              </ListGroup>
             </Col>
           </Row>
 
