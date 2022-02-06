@@ -24,6 +24,9 @@ import {
   CORSI_MIGLIORI_REQUEST,
   CORSI_MIGLIORI_SUCCESS,
   CORSI_MIGLIORI_FAIL,
+  CORSI_ACQUISTATI_REQUEST,
+  CORSI_ACQUISTATI_SUCCESS,
+  CORSI_ACQUISTATI_FAIL,
 } from "../constants/corsoConstants";
 
 export const listCorsi =
@@ -252,6 +255,38 @@ export const listCorsiMigliori = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: CORSI_MIGLIORI_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listCorsiAcquistati = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: CORSI_ACQUISTATI_REQUEST });
+
+    const {
+      utenteLogin: { utenteInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${utenteInfo.auth_token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/courses/purchased`, config);
+
+    dispatch({
+      type: CORSI_ACQUISTATI_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CORSI_ACQUISTATI_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

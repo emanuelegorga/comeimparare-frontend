@@ -19,6 +19,7 @@ import ListaCorsiPage from "./pages/ListaCorsiPage";
 import ModificaCorsoPage from "./pages/ModificaCorsoPage";
 import ListaOrdiniPage from "./pages/ListaOrdiniPage";
 import UtentiListaCorsiPage from "./pages/UtentiListaCorsiPage";
+import CorsiAcquistatiPage from "./pages/CorsiAcquistatiPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/ordini/:id" element={<OrdinePage />} />
             <Route path="/corsi/:id" element={<CorsoPage />} />
             <Route path="/listacorsi" element={<UtentiListaCorsiPage />} />
+            <Route path="/corsiacquistati" element={<CorsiAcquistatiPage />} />
             <Route path="/admin/listautenti" element={<ListaUtentiPage />} />
             <Route path="/admin/listacorsi" element={<ListaCorsiPage />} />
             <Route path="/admin/listaordini" element={<ListaOrdiniPage />} />
