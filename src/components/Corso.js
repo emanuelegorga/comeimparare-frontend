@@ -36,7 +36,7 @@ function Corso({ corso }) {
           <div className="my-3">Descrizione breve: {corso.summary}</div>
         </Card.Text>
 
-        <Card.Text as="h3">${corso.price}</Card.Text>
+        <Card.Text as="h3">€ {corso.price}</Card.Text>
       </Card.Body>
     </Card>
   );

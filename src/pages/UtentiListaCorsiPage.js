@@ -3,7 +3,6 @@ import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import Paginate from "../components/Paginate";
-import CorsoCarousel from "../components/CorsoCarousel";
 import { listCorsi } from "../actions/corsoActions";
 
 import Loader from "../components/Loader";
@@ -27,8 +26,6 @@ function UtentiListaCorsiPage() {
 
   return (
     <div>
-      {!search_title && <CorsoCarousel />}
-
       <h1>Tutti i corsi</h1>
       {loading ? (
         <Loader />
