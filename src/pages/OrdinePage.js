@@ -58,7 +58,7 @@ function OrdinePage() {
                       <Row>
                         <Col md={1}>
                           <Image
-                            src={item.logo_url}
+                            src={`${process.env.REACT_APP_API_URL}/item.logo_url}`}
                             alt={item.course.title}
                             fluid
                             rounded

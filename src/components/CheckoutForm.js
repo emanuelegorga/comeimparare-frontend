@@ -57,7 +57,7 @@ function CheckoutForm({ ordineId }) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:4000/ordini/${ordineId}`,
+        return_url: `${process.env.REACT_APP_FRONTEND_URL}/ordini/${ordineId}`,
       },
     });
 

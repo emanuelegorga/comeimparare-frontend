@@ -34,12 +34,15 @@ export const login = (email, password) => async (dispatch) => {
       type: UTENTE_LOGIN_REQUEST,
     });
 
-    const { data } = await axios.post("/auth/login", {
-      user: {
-        email: email,
-        password: password,
-      },
-    });
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/login`,
+      {
+        user: {
+          email: email,
+          password: password,
+        },
+      }
+    );
 
     dispatch({
       type: UTENTE_LOGIN_SUCCESS,
@@ -72,14 +75,17 @@ export const registrazione =
         type: UTENTE_REGISTRAZIONE_REQUEST,
       });
 
-      const { data } = await axios.post("/users", {
-        user: {
-          name: name,
-          email: email,
-          password: password,
-          password_confirmation: password_confirmation,
-        },
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users`,
+        {
+          user: {
+            name: name,
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation,
+          },
+        }
+      );
 
       dispatch({
         type: UTENTE_REGISTRAZIONE_SUCCESS,
@@ -120,7 +126,10 @@ export const getUtenteAccount = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/users/${id}`, config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/users/${id}`,
+      config
+    );
 
     dispatch({
       type: UTENTE_ACCOUNT_SUCCESS,
@@ -155,7 +164,11 @@ export const updateUtenteAccount =
         },
       };
 
-      const { data } = await axios.put(`/users/${id}`, utente, config);
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/users/${id}`,
+        utente,
+        config
+      );
 
       dispatch({
         type: UTENTE_UPDATE_ACCOUNT_SUCCESS,
@@ -205,7 +218,10 @@ export const getListaUtenti = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/users`, config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/users`,
+      config
+    );
 
     dispatch({
       type: LISTA_UTENTI_SUCCESS,
@@ -239,7 +255,10 @@ export const eliminaUtente = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/users/${id}`, config);
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_API_URL}/users/${id}`,
+      config
+    );
 
     dispatch({
       type: ELIMINA_UTENTE_SUCCESS,
@@ -273,7 +292,11 @@ export const updateUtente = (utente) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/users/${utente.id}`, utente, config);
+    const { data } = await axios.put(
+      `${process.env.REACT_APP_API_URL}/users/${utente.id}`,
+      utente,
+      config
+    );
 
     dispatch({
       type: UTENTE_UPDATE_SUCCESS,

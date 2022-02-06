@@ -6,14 +6,16 @@ import {
 } from "../constants/carrelloConstants";
 
 export const aggiungiAlCarrello = (id) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/courses/${id}`);
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_API_URL}/courses/${id}`
+  );
 
   dispatch({
     type: CARRELLO_ADD_ITEM,
     payload: {
       id: data.id,
       title: data.title,
-      logo: data.logo_url,
+      logo: `${process.env.REACT_APP_API_URL}/${data.logo_url}`,
       difficulty: data.difficulty,
       language: data.language,
       description: data.description,

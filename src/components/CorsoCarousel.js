@@ -25,7 +25,11 @@ function CorsoCarousel() {
       {corsi.map((corso) => (
         <Carousel.Item key={corso.id}>
           <Link to={`/corsi/${corso.id}`}>
-            <Image src={corso.logo_url} alt={corso.title} fluid />
+            <Image
+              src={`${process.env.REACT_APP_API_URL}/${corso.logo_url}`}
+              alt={corso.title}
+              fluid
+            />
             <Carousel.Caption className="carousel.caption">
               <h4>{corso.title}</h4>
             </Carousel.Caption>

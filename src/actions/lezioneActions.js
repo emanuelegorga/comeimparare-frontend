@@ -26,7 +26,7 @@ export const listLezioneProperties =
       };
 
       const { data } = await axios.get(
-        `/courses/${corso_id}/lectures/${id}`,
+        `${process.env.REACT_APP_API_URL}/courses/${corso_id}/lectures/${id}`,
         config
       );
 
@@ -65,7 +65,7 @@ export const creaLezione = (payload) => async (dispatch, getState) => {
     console.log(payload);
 
     const { data } = await axios.post(
-      `/courses/${payload.corsoId}/lectures`,
+      `${process.env.REACT_APP_API_URL}/courses/${payload.corsoId}/lectures`,
       payload,
       config
     );

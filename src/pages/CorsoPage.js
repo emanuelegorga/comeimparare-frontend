@@ -82,7 +82,11 @@ function CorsoPage() {
         <div>
           <Row>
             <Col md={6}>
-              <Image src={corso.logo_url} alt={corso.title} fluid />
+              <Image
+                src={`${process.env.REACT_APP_API_URL}/${corso.logo_url}`}
+                alt={corso.title}
+                fluid
+              />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">

@@ -7,7 +7,7 @@ function Corso({ corso }) {
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/corsi/${corso.id}`}>
-        <Card.Img src={corso.logo_url} />
+        <Card.Img src={`${process.env.REACT_APP_API_URL}/${corso.logo_url}`} />
       </Link>
 
       <Card.Body>

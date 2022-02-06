@@ -38,7 +38,9 @@ export const listCorsi =
     try {
       dispatch({ type: CORSO_LIST_REQUEST });
 
-      const { data } = await axios.get(`/courses${params}`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/courses${params}`
+      );
 
       dispatch({
         type: CORSO_LIST_SUCCESS,
@@ -59,7 +61,9 @@ export const listLatestCorsi = () => async (dispatch) => {
   try {
     dispatch({ type: CORSO_LATEST_REQUEST });
 
-    const { data } = await axios.get("/courses/latest");
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/courses/latest`
+    );
 
     dispatch({
       type: CORSO_LATEST_SUCCESS,
@@ -80,7 +84,9 @@ export const listCorsoProperties = (id) => async (dispatch) => {
   try {
     dispatch({ type: CORSO_PROPERTIES_REQUEST });
 
-    const { data } = await axios.get(`/courses/${id}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/courses/${id}`
+    );
 
     dispatch({
       type: CORSO_PROPERTIES_SUCCESS,
@@ -114,7 +120,10 @@ export const eliminaCorso = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/courses/${id}`, config);
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_API_URL}/courses/${id}`,
+      config
+    );
 
     dispatch({ type: ELIMINA_CORSO_SUCCESS });
   } catch (error) {
@@ -154,7 +163,11 @@ export const creaCorso = () => async (dispatch, getState) => {
       price: 10,
     };
 
-    const { data } = await axios.post(`/courses`, corso, config);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/courses`,
+      corso,
+      config
+    );
 
     dispatch({
       type: CREA_CORSO_SUCCESS,
@@ -188,7 +201,11 @@ export const updateCorso = (corso) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/courses/${corso.id}`, corso, config);
+    const { data } = await axios.put(
+      `${process.env.REACT_APP_API_URL}/courses/${corso.id}`,
+      corso,
+      config
+    );
 
     dispatch({
       type: CORSO_UPDATE_SUCCESS,
@@ -225,7 +242,7 @@ export const updateCorsoRate = (id, rate) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `/courses/${id}/rate_course`,
+      `${process.env.REACT_APP_API_URL}/courses/${id}/rate_course`,
       rate,
       config
     );
@@ -249,7 +266,9 @@ export const listCorsiMigliori = () => async (dispatch) => {
   try {
     dispatch({ type: CORSI_MIGLIORI_REQUEST });
 
-    const { data } = await axios.get(`/courses/top`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/courses/top`
+    );
 
     dispatch({
       type: CORSI_MIGLIORI_SUCCESS,
@@ -281,7 +300,10 @@ export const listCorsiAcquistati = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/courses/purchased`, config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/courses/purchased`,
+      config
+    );
 
     dispatch({
       type: CORSI_ACQUISTATI_SUCCESS,
@@ -313,7 +335,10 @@ export const listCorsiCreati = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/courses/created`, config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/courses/created`,
+      config
+    );
 
     dispatch({
       type: CORSI_CREATI_SUCCESS,

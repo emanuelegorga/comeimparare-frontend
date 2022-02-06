@@ -13,9 +13,7 @@ import CheckoutForm from "../components/CheckoutForm";
 import { creaOrdine } from "../actions/ordineActions";
 import { CREA_ORDINE_RESET } from "../constants/ordineConstants";
 
-const stripePromise = loadStripe(
-  "pk_test_51KPhagD4017DXUNmjQJ7INsOtvZAJtmiGmSu6IvYU67wB5GMfgKRCciefLuQTrhzTdU8amh7eDPcW1Uj09dWETEf00JcHRrF6Z"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 function ConfermaOrdinePage() {
   const dispatch = useDispatch();

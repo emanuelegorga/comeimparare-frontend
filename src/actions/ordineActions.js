@@ -33,7 +33,11 @@ export const creaOrdine = (ordine) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/orders`, ordine, config);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/orders`,
+      ordine,
+      config
+    );
 
     dispatch({
       type: CREA_ORDINE_SUCCESS,
@@ -67,7 +71,10 @@ export const getDettagliOrdine = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/orders/${id}`, config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/orders/${id}`,
+      config
+    );
 
     dispatch({
       type: DETTAGLI_ORDINE_SUCCESS,
@@ -106,7 +113,10 @@ export const listaOrdiniMiei = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/orders", config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/orders`,
+      config
+    );
 
     dispatch({
       type: LISTA_MIEI_ORDINI_SUCCESS,
@@ -140,7 +150,10 @@ export const getListaOrdini = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/orders/full_list", config);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/orders/full_list`,
+      config
+    );
 
     dispatch({
       type: LISTA_ORDINI_SUCCESS,
