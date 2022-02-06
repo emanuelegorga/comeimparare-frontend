@@ -240,62 +240,71 @@ function CorsoPage() {
                     </ListGroup.Item>
                   ))}
 
-                <ListGroup.Item>
-                  <h4>Scrivi una recensione</h4>
+                {utenteInfo &&
+                undefined !== corso.joins &&
+                corso.joins.find((join) => join.user_id === utenteInfo.id) ? (
+                  <ListGroup.Item>
+                    <h4>Scrivi una recensione</h4>
 
-                  {loadingCorsoRate && <Loader />}
-                  {successCorsoRate && (
-                    <Message variant="success">
-                      Recensione aggiunta con successo
-                    </Message>
-                  )}
-                  {errorCorsoRate && (
-                    <Message variant="danger">{errorCorsoRate}</Message>
-                  )}
+                    {loadingCorsoRate && <Loader />}
+                    {successCorsoRate && (
+                      <Message variant="success">
+                        Recensione aggiunta con successo
+                      </Message>
+                    )}
+                    {errorCorsoRate && (
+                      <Message variant="danger">{errorCorsoRate}</Message>
+                    )}
 
-                  {utenteInfo ? (
-                    <Form onSubmit={submitHandler}>
-                      <Form.Group controlId="rate">
-                        <Form.Label>Valutazione</Form.Label>
-                        <Form.Control
-                          as="select"
-                          value={rating}
-                          onChange={(e) => setRating(e.target.value)}
+                    {utenteInfo ? (
+                      <Form onSubmit={submitHandler}>
+                        <Form.Group controlId="rate">
+                          <Form.Label>Valutazione</Form.Label>
+                          <Form.Control
+                            as="select"
+                            value={rating}
+                            onChange={(e) => setRating(e.target.value)}
+                          >
+                            <option value="">Seleziona un voto...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="review">
+                          <Form.Label>Recensione</Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            row="5"
+                            value={review}
+                            onChange={(e) => setReview(e.target.value)}
+                          ></Form.Control>
+                        </Form.Group>
+
+                        <Button
+                          disabled={loadingCorsoRate}
+                          type="submit"
+                          variant="primary"
                         >
-                          <option value="">Seleziona un voto...</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </Form.Control>
-                      </Form.Group>
-
-                      <Form.Group controlId="review">
-                        <Form.Label>Recensione</Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          row="5"
-                          value={review}
-                          onChange={(e) => setReview(e.target.value)}
-                        ></Form.Control>
-                      </Form.Group>
-
-                      <Button
-                        disabled={loadingCorsoRate}
-                        type="submit"
-                        variant="primary"
-                      >
-                        Invia
-                      </Button>
-                    </Form>
-                  ) : (
-                    <Message variant="info">
-                      Effettua il <Link to="/login">login</Link> per scrivere
-                      una recensione
-                    </Message>
-                  )}
-                </ListGroup.Item>
+                          Invia
+                        </Button>
+                      </Form>
+                    ) : (
+                      <Message variant="info">
+                        Effettua il <Link to="/login">login</Link> per scrivere
+                        una recensione
+                      </Message>
+                    )}
+                  </ListGroup.Item>
+                ) : (
+                  <Message variant="info">
+                    Soltanto gli studenti di questo corso possono lasciare
+                    recensioni.
+                  </Message>
+                )}
               </ListGroup>
             </Col>
           </Row>
