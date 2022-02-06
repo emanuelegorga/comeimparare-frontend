@@ -29,6 +29,7 @@ import {
   listaMieiOrdiniReducer,
   listaOrdiniReducer,
 } from "./reducers/ordineReducers";
+import { lezionePropertiesReducer } from "./reducers/lezioneReducers";
 
 const reducer = combineReducers({
   corsoList: corsoListReducer,
@@ -56,6 +57,8 @@ const reducer = combineReducers({
   ordineDettagli: ordineDettagliReducer,
   listaMieiOrdini: listaMieiOrdiniReducer,
   listaOrdini: listaOrdiniReducer,
+
+  lezioneProperties: lezionePropertiesReducer,
 });
 
 const carrelloItemsFromSstorage = localStorage.getItem("carrelloItems")

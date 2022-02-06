@@ -21,6 +21,7 @@ import ListaOrdiniPage from "./pages/ListaOrdiniPage";
 import UtentiListaCorsiPage from "./pages/UtentiListaCorsiPage";
 import CorsiAcquistatiPage from "./pages/CorsiAcquistatiPage";
 import CorsiCreatiPage from "./pages/CorsiCreatiPage";
+import LezionePage from "./pages/LezionePage";
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
             <Route path="/metodopagamento" element={<PagamentoPage />} />
             <Route path="/confermaordine" element={<ConfermaOrdinePage />} />
             <Route path="/ordini/:id" element={<OrdinePage />} />
+            <Route
+              path="/corsi/:corso_id/lezioni/:id"
+              element={<LezionePage />}
+            />
             <Route path="/corsi/:id" element={<CorsoPage />} />
             <Route path="/listacorsi" element={<UtentiListaCorsiPage />} />
             <Route path="/corsiacquistati" element={<CorsiAcquistatiPage />} />

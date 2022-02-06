@@ -37,7 +37,10 @@ function CarrelloPage() {
         <h1>Carrello</h1>
         {carrelloItems.length === 0 ? (
           <Message variant="info">
-            Il tuo carrello è vuoto. <Link to="/">Torna Indietro</Link>
+            Il tuo carrello è vuoto.{" "}
+            <Button className="btn btn-light my-3" onClick={() => navigate(-1)}>
+              Indietro
+            </Button>
           </Message>
         ) : (
           <ListGroup variant="flush">

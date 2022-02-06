@@ -114,7 +114,9 @@ function ModificaCorsoPage() {
 
   return (
     <div>
-      <Link to="/">Indietro</Link>
+      <Button className="btn btn-light my-3" onClick={() => navigate(-1)}>
+        Indietro
+      </Button>
 
       <FormContainer>
         <h1>Modifica corso</h1>

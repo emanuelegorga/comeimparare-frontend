@@ -66,9 +66,9 @@ function CorsoPage() {
 
   return (
     <div>
-      <Link to="/" className="btn btn-light my-3">
+      <Button className="btn btn-light my-3" onClick={() => navigate(-1)}>
         Indietro
-      </Link>
+      </Button>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -185,7 +185,9 @@ function CorsoPage() {
                     <ListGroup.Item key={lecture.id}>
                       <strong>{lecture.title}</strong>
                       <p>{lecture.created_at.substring(0, 10)}</p>
-                      <p>{lecture.content}</p>
+                      <Link to={`/corsi/${corso.id}/lezioni/${lecture.id}`}>
+                        Guarda la lezione
+                      </Link>
                     </ListGroup.Item>
                   ))}
               </ListGroup>
