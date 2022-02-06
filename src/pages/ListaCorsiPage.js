@@ -36,14 +36,6 @@ function ListaCorsiPage() {
     corso: createdCorso,
   } = corsoCrea;
 
-  // useEffect(() => {
-  //   if (utenteInfo && utenteInfo.is_admin) {
-  //     dispatch(listCorsi());
-  //   } else {
-  //     navigate("/login");
-  //   }
-  // }, [dispatch, navigate, utenteInfo, successDelete]);
-
   useEffect(() => {
     dispatch({ type: CREA_CORSO_RESET });
 

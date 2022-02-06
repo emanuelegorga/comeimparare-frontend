@@ -21,7 +21,6 @@ function UtentiListaCorsiPage() {
 
   useEffect(() => {
     dispatch(listCorsi(search_title));
-    // alert("This is a project for educational purposes only.");
   }, [dispatch, search_title]);
 
   return (

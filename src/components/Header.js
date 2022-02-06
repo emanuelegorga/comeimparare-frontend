@@ -32,14 +32,43 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {utenteInfo ? (
-                <NavDropdown title={utenteInfo.name} id="name">
-                  <LinkContainer to={`/accounts/${utenteInfo.id}`}>
-                    <NavDropdown.Item>Account</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <div>
+                  <NavDropdown
+                    title={
+                      <span>
+                        <i className="fas fa-user"></i>
+                        {"  " + utenteInfo.name}
+                      </span>
+                    }
+                    id="name"
+                    className="btn-group"
+                  >
+                    <LinkContainer to={`/accounts/${utenteInfo.id}`}>
+                      <NavDropdown.Item>Account</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+
+                  <NavDropdown
+                    title={
+                      <span>
+                        <i className="fas fa-pencil"></i>
+                        {" Insegna"}
+                      </span>
+                    }
+                    id="insegna"
+                    className="btn-group"
+                  >
+                    <LinkContainer to="/nuovocorso">
+                      <NavDropdown.Item>Crea corso</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/corsicreati">
+                      <NavDropdown.Item>Corsi creati</NavDropdown.Item>
+                    </LinkContainer>
+                  </NavDropdown>
+                </div>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
@@ -48,17 +77,39 @@ function Header() {
                 </LinkContainer>
               )}
 
-              <LinkContainer to="/listacorsi">
-                <Nav.Link>
-                  <i className="fas fa-books"></i>Corsi
-                </Nav.Link>
-              </LinkContainer>
+              {utenteInfo ? (
+                <NavDropdown
+                  title={
+                    <span>
+                      <i className="fas fa-graduation-cap"></i>
+                      {" Impara"}
+                    </span>
+                  }
+                  id="name"
+                  className="btn-group"
+                >
+                  <LinkContainer to="/listacorsi">
+                    <NavDropdown.Item>Tutti i corsi</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/corsiacquistati">
+                    <NavDropdown.Item>Corsi acquistati</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to="/listacorsi">
+                  <Nav.Link>
+                    <i className="fas fa-books"></i>Tutti i corsi
+                  </Nav.Link>
+                </LinkContainer>
+              )}
 
-              <LinkContainer to="/carrello">
-                <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i>Carrello
-                </Nav.Link>
-              </LinkContainer>
+              {utenteInfo && (
+                <LinkContainer to="/carrello">
+                  <Nav.Link>
+                    <i className="fas fa-shopping-cart"></i> Carrello
+                  </Nav.Link>
+                </LinkContainer>
+              )}
 
               {utenteInfo && utenteInfo.is_admin && (
                 <NavDropdown title="Admin" id="adminmenu">
