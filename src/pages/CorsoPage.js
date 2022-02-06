@@ -99,96 +99,101 @@ function CorsoPage() {
                 </ListGroup.Item>
 
                 {undefined !== corso.user &&
+                  utenteInfo &&
                   corso.user.id !== utenteInfo.id && (
                     <ListGroup.Item>Prezzo: {corso.price}€</ListGroup.Item>
                   )}
                 <ListGroup.Item>{corso.description}</ListGroup.Item>
                 <ListGroup.Item>{corso.summary}</ListGroup.Item>
-                {undefined !== corso.user && corso.user.id === utenteInfo.id && (
-                  <ListGroup.Item>
-                    <Button onClick={aggiungiLezione} className="btn my-3">
-                      Aggiungi nuova lezione
-                    </Button>
-                  </ListGroup.Item>
-                )}
+                {undefined !== corso.user &&
+                  utenteInfo &&
+                  corso.user.id === utenteInfo.id && (
+                    <ListGroup.Item>
+                      <Button onClick={aggiungiLezione} className="btn my-3">
+                        Aggiungi nuova lezione
+                      </Button>
+                    </ListGroup.Item>
+                  )}
               </ListGroup>
             </Col>
 
-            {undefined !== corso.user && corso.user.id !== utenteInfo.id && (
-              <Col md={3}>
-                <Card>
-                  <ListGroup variant="flush">
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Prezzo:</Col>
-                        <Col>
-                          <strong>{corso.price}€</strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+            {undefined !== corso.user &&
+              utenteInfo &&
+              corso.user.id !== utenteInfo.id && (
+                <Col md={3}>
+                  <Card>
+                    <ListGroup variant="flush">
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Prezzo:</Col>
+                          <Col>
+                            <strong>{corso.price}€</strong>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Lingua:</Col>
-                        <Col>
-                          <strong>{corso.language}</strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Lingua:</Col>
+                          <Col>
+                            <strong>{corso.language}</strong>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Difficoltà:</Col>
-                        <Col>
-                          <strong>{corso.difficulty}</strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Difficoltà:</Col>
+                          <Col>
+                            <strong>{corso.difficulty}</strong>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Creato il:</Col>
-                        <Col>
-                          <strong>
-                            {undefined !== corso.created_at &&
-                              corso.created_at.substring(0, 10)}
-                          </strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Creato il:</Col>
+                          <Col>
+                            <strong>
+                              {undefined !== corso.created_at &&
+                                corso.created_at.substring(0, 10)}
+                            </strong>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Studenti iscritti:</Col>
-                        <Col>
-                          <strong>{studenti.length}</strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Studenti iscritti:</Col>
+                          <Col>
+                            <strong>{studenti.length}</strong>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Numero lezioni:</Col>
-                        <Col>
-                          <strong>{lezioni.length}</strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Numero lezioni:</Col>
+                          <Col>
+                            <strong>{lezioni.length}</strong>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Button
-                        onClick={aggiungiAlCarrello}
-                        disabled={false} // check if User has appropriate role to buy
-                        className="btn-block w-100"
-                        type="button"
-                      >
-                        Aggiungi al carrello
-                      </Button>
-                    </ListGroup.Item>
-                  </ListGroup>
-                </Card>
-              </Col>
-            )}
+                      <ListGroup.Item>
+                        <Button
+                          onClick={aggiungiAlCarrello}
+                          disabled={false} // check if User has appropriate role to buy
+                          className="btn-block w-100"
+                          type="button"
+                        >
+                          Aggiungi al carrello
+                        </Button>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </Card>
+                </Col>
+              )}
           </Row>
 
           <Row>
@@ -200,9 +205,17 @@ function CorsoPage() {
                     <ListGroup.Item key={lecture.id}>
                       <strong>{lecture.title}</strong>
                       <p>{lecture.created_at.substring(0, 10)}</p>
-                      <Link to={`/corsi/${corso.id}/lezioni/${lecture.id}`}>
-                        <i className="fas fa-arrow-right"></i> Guarda la lezione
-                      </Link>
+                      {utenteInfo ? (
+                        <Link to={`/corsi/${corso.id}/lezioni/${lecture.id}`}>
+                          <i className="fas fa-arrow-right"></i> Guarda la
+                          lezione
+                        </Link>
+                      ) : (
+                        <Message variant="info">
+                          Effettua il <Link to="/login">login</Link> guardare la
+                          lezione
+                        </Message>
+                      )}
                     </ListGroup.Item>
                   ))}
               </ListGroup>

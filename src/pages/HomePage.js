@@ -16,7 +16,7 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(listLatestCorsi());
-    // alert("This is a project for educational purposes only.");
+    alert("This is a project for educational purposes only.");
   }, [dispatch]);
 
   return (
