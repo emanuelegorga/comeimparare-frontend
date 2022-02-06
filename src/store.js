@@ -11,6 +11,7 @@ import {
   corsiMiglioriReducer,
   corsoLatestReducer,
   corsiAcquistatiReducer,
+  corsiCreatiReducer,
 } from "./reducers/corsoReducers";
 import { carrelloReducer } from "./reducers/carrelloReducers";
 import {
@@ -39,6 +40,7 @@ const reducer = combineReducers({
   corsiMigliori: corsiMiglioriReducer,
   corsoLatest: corsoLatestReducer,
   corsiAcquistati: corsiAcquistatiReducer,
+  corsiCreati: corsiCreatiReducer,
 
   carrello: carrelloReducer,
 

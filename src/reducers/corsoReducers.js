@@ -29,6 +29,9 @@ import {
   CORSI_ACQUISTATI_REQUEST,
   CORSI_ACQUISTATI_SUCCESS,
   CORSI_ACQUISTATI_FAIL,
+  CORSI_CREATI_REQUEST,
+  CORSI_CREATI_SUCCESS,
+  CORSI_CREATI_FAIL,
 } from "../constants/corsoConstants";
 
 export const corsoListReducer = (state = { corsi: [] }, action) => {
@@ -193,6 +196,22 @@ export const corsiAcquistatiReducer = (state = { corsi: [] }, action) => {
       return { loading: false, corsi: action.payload };
 
     case CORSI_ACQUISTATI_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const corsiCreatiReducer = (state = { corsi: [] }, action) => {
+  switch (action.type) {
+    case CORSI_CREATI_REQUEST:
+      return { loading: true, corsi: [] };
+
+    case CORSI_CREATI_SUCCESS:
+      return { loading: false, corsi: action.payload };
+
+    case CORSI_CREATI_FAIL:
       return { loading: false, error: action.payload };
 
     default:
