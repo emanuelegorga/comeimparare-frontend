@@ -17,23 +17,20 @@ function Corso({ corso }) {
           </Card.Title>
         </Link>
 
-        <Valutazione
-          value={corso.average_rating}
-          text="Valutazione: "
-          color={"#f8e825"}
-        />
+        <Valutazione value={corso.average_rating} text="" color={"#f8e825"} />
 
         <Card.Text as="div">
-          <div className="my-3">Difficoltà: {corso.difficulty}</div>
+          <div className="my-3">
+            <i className="fas fa-signal"></i> {corso.difficulty}
+          </div>
         </Card.Text>
         <Card.Text as="div">
-          <div className="my-3">Linguaggio: {corso.language}</div>
+          <div className="my-3">
+            <i className="fas fa-globe"></i> {corso.language}
+          </div>
         </Card.Text>
         <Card.Text as="div">
-          <div className="my-3">Descrizione: {corso.description}</div>
-        </Card.Text>
-        <Card.Text as="div">
-          <div className="my-3">Descrizione breve: {corso.summary}</div>
+          <div className="my-3">{corso.description}</div>
         </Card.Text>
 
         <Card.Text as="h3">€ {corso.price}</Card.Text>

@@ -6,6 +6,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../actions/utenteActions";
 import BarraRicerca from "./BarraRicerca";
 
+import { creaCorso } from "../actions/corsoActions";
+
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,7 +63,7 @@ function Header() {
                     id="insegna"
                     className="btn-group"
                   >
-                    <LinkContainer to="/nuovocorso">
+                    <LinkContainer to="/listacorsicreati">
                       <NavDropdown.Item>Crea corso</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/corsicreati">

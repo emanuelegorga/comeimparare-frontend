@@ -49,7 +49,7 @@ function ModificaCorsoPage() {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: CORSO_UPDATE_RESET });
-      navigate("/admin/listacorsi");
+      navigate("/");
     } else {
       if (!corso.title || corso.id !== corsoId) {
         dispatch(listCorsoProperties(corsoId));
@@ -114,7 +114,7 @@ function ModificaCorsoPage() {
 
   return (
     <div>
-      <Link to="/admin/listacorsi">Indietro</Link>
+      <Link to="/">Indietro</Link>
 
       <FormContainer>
         <h1>Modifica corso</h1>

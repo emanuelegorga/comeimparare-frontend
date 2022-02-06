@@ -41,6 +41,8 @@ function App() {
             <Route path="/listacorsi" element={<UtentiListaCorsiPage />} />
             <Route path="/corsiacquistati" element={<CorsiAcquistatiPage />} />
             <Route path="/corsicreati" element={<CorsiCreatiPage />} />
+            <Route path="/listacorsicreati" element={<CorsiCreatiPage />} />
+            <Route path="/corsi/:id/modifica" element={<ModificaCorsoPage />} />
             <Route path="/admin/listautenti" element={<ListaUtentiPage />} />
             <Route path="/admin/listacorsi" element={<ListaCorsiPage />} />
             <Route path="/admin/listaordini" element={<ListaOrdiniPage />} />
