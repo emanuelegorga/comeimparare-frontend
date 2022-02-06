@@ -16,7 +16,11 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(listLatestCorsi());
-    alert("This is a project for educational purposes only.");
+
+    if (localStorage.getItem("popState") != "shown") {
+      alert("This is a project for educational purposes only.");
+      localStorage.setItem("popState", "shown");
+    }
   }, [dispatch]);
 
   return (
