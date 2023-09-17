@@ -19,6 +19,7 @@ function HomePage() {
 
     if (localStorage.getItem("popState") != "shown") {
       alert("This is a project for educational purposes only.");
+      alert("Since this is a project for educational purposes only, it has been used a free hosting service to showcase this app. There might be a brief waiting time (up to 30 seconds) before the app loads upon the first visit if the app hasn't been accessed recently. Thank you for your patience and I hope you enjoy exploring what I've built!")
       localStorage.setItem("popState", "shown");
     }
   }, [dispatch]);
